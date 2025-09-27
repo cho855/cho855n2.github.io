@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>歡迎頁面</title>
+  <title>Welcome</title>
 
   <!-- 字型：Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -38,3 +38,143 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 20px;
+      width: 320px;
+      opacity: 0;
+      animation: slideUp 1s ease 0.5s forwards;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 600;
+      text-align: center;
+      padding: 14px 20px;
+      background-color: var(--link-bg);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    a:hover {
+      background-color: var(--link-hover);
+      color: var(--link-hover-text);
+      transform: translateY(-2px);
+    }
+
+    /* 點擊過場動畫 */
+    .fade-out {
+      animation: fadeOut 0.6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+    }
+
+    .toggle-dark {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--link-bg);
+      color: var(--text-color);
+      box-shadow: 0 2px 5px var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-dark:hover {
+      background-color: var(--link-hover);
+      color: var(--link-hover-text);
+    }
+
+    @media (max-width: 500px) {
+      .links {
+        grid-template-columns: 1fr;
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">切換模式</button>
+
+  <h1>歡迎</h1>
+
+  <div class="links">
+    <a href="question1.html">問題1</a>
+    <a href="question2.html">問題2</a>
+    <a href="question3.html">問題3</a>
+    <a href="question4.html">問題4</a>
+    <a href="question5.html">問題5</a>
+    <a href="question6.html">問題6</a>
+    <a href="question7.html">問題7</a>
+    <a href="question8.html">問題8</a>
+  </div>
+
+  <script>
+    // 深色模式切換
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // 點擊過場動畫
+    const links = document.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault(); // 防止立即跳轉
+        document.body.classList.add("fade-out");
+
+        const target = this.getAttribute("href");
+        setTimeout(() => {
+          window.location.href = target;
+        }, 600); // 配合 fadeOut 動畫時長
+      });
+    });
+  </script>
+</body>
+</html>
