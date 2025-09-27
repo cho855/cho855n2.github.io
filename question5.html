@@ -53,33 +53,15 @@ body {
   box-shadow: 0 12px 30px var(--shadow);
 }
 
-/* 標題打字機效果（多行自動換行） */
+/* 標題美化 */
 h3 {
   font-size: 1.5rem;
   margin-bottom: 28px;
-  overflow: hidden;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   line-height: 1.4;
+  min-height: 3.5em; /* 保持高度避免跳動 */
 }
 
-h3 span {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid var(--text-color);
-  width: 0;
-  animation: typing 2.5s steps(50, end) forwards, blink 0.8s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-/* 段落美化與自動逐行淡入 */
+/* 段落美化與逐行淡入 */
 p span {
   display: block;
   margin-bottom: 1.2em;
@@ -157,10 +139,7 @@ p span {
 <button class="toggle-dark">切換模式</button>
 
 <div class="container">
-<h3>
-  <span>問題五：請描述一件產生明顯負面情緒的經歷，</span>
-  <span>如何處理該情緒？</span>
-</h3>
+<h3 id="title"></h3>
 
 <p>
   <span>去年遭逢至親病逝，至今已一年多了，這個事件可能是我目前生命最大的衝擊，</span>
@@ -197,6 +176,33 @@ document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
   });
 });
 
+// 標題逐行打字機效果
+const titleText = [
+  "問題五：請描述一件產生明顯負面情緒的經歷，",
+  "如何處理該情緒？"
+];
+const titleEl = document.getElementById("title");
+
+function typeLine(line, el, delay = 0) {
+  setTimeout(() => {
+    let i = 0;
+    const span = document.createElement("span");
+    el.appendChild(span);
+    function type() {
+      if (i < line.length) {
+        span.textContent += line[i];
+        i++;
+        setTimeout(type, 50);
+      }
+    }
+    type();
+  }, delay);
+}
+
+titleText.forEach((line, index) => {
+  typeLine(line, titleEl, index * 1200);
+});
+
 // 段落自動逐行動畫
 window.addEventListener('DOMContentLoaded', () => {
   const spans = document.querySelectorAll('p span');
@@ -208,4 +214,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
