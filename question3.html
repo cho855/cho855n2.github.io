@@ -1,121 +1,228 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>問題三</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>問題三</title>
 
-  <!-- 字型 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --card-bg: #f5f5f5;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --button-bg: #000;
-      --button-text: #fff;
-    }
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --button-bg: #000;
+            --button-text: #fff;
+        }
 
-    body.dark-mode {
-      --bg-color: #1a1a1a;
-      --text-color: #f0f0f0;
-      --card-bg: #2a2a2a;
-      --shadow: rgba(255, 255, 255, 0.08);
-      --button-bg: #fff;
-      --button-text: #000;
-    }
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2a2a2a;
+            --shadow: rgba(255, 255, 255, 0.08);
+            --button-bg: #fff;
+            --button-text: #000;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s, color 0.4s;
-    }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #ffffff);
+            color: var(--text-color);
+            transition: background-color 0.4s, color 0.4s;
+        }
 
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: background-color 0.4s, box-shadow 0.4s;
-    }
+        /* 卡片 */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+        }
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-    }
+        .container:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px var(--shadow);
+        }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
+        /* 標題打字機效果，逐行 */
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
+        h3 span {
+            display: block;
+            overflow: hidden;
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            width: 0;
+            animation: typing 1.5s steps(40, end) forwards, blink 0.8s step-end infinite;
+        }
 
-    .back-button:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
+        h3 span:nth-child(2) {
+            animation-delay: 1.6s;
+        }
 
-    .toggle-dark {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 8px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      box-shadow: 0 2px 5px var(--shadow);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        h3 span:nth-child(3) {
+            animation-delay: 3.2s;
+        }
 
-    .toggle-dark:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
-  </style>
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* 段落美化 */
+        p span {
+            display: block;
+            margin-bottom: 1.2em;
+            font-size: 1rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            text-align: justify;
+            text-indent: 1.5em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* 深色模式切換按鈕 */
+        .toggle-dark {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-dark:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ripple 效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <button class="toggle-dark" onclick="toggleDarkMode()">切換模式</button>
+    <button class="toggle-dark">切換模式</button>
 
-  <div class="container">
-    <h3>問題三：如果參與這個訓練，會怎麼安排學習時間？</h3>
-    <p>CCCCCCC</p>
+    <div class="container">
+        <h3>
+            <span>問題三：如果參與這個訓練，會怎麼安排學習時間？</span>
+        </h3>    
 
-    <a class="back-button" href="index.html">← 返回</a>
-  </div>
+        <p>
+            <span style="animation-delay:2.5s;">目前僅有少數法律案件需處理不會佔據太多平日時間，幾乎可以全職投入wehelp規劃的學習內容。</span>
+        </p>
 
-  <script>
-    // 深色模式切換
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-  </script>
+        <a class="back-button" href="index.html">← 返回</a>
+    </div>
+
+    <script>
+        // 深色模式切換
+        function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
+
+        // ripple 效果
+        document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const circle = document.createElement("span");
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
+                circle.classList.add("ripple");
+                const ripple = this.getElementsByClassName("ripple")[0];
+                if (ripple) ripple.remove();
+                this.appendChild(circle);
+                if (this.classList.contains("toggle-dark")) toggleDarkMode();
+            });
+        });
+    </script>
+
 </body>
+
 </html>
