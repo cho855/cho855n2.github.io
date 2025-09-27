@@ -1,121 +1,226 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>問題一</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>問題一</title>
 
-  <!-- 字型 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --card-bg: #f5f5f5;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --button-bg: #000;
-      --button-text: #fff;
-    }
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --button-bg: #000;
+            --button-text: #fff;
+        }
 
-    body.dark-mode {
-      --bg-color: #1a1a1a;
-      --text-color: #f0f0f0;
-      --card-bg: #2a2a2a;
-      --shadow: rgba(255, 255, 255, 0.08);
-      --button-bg: #fff;
-      --button-text: #000;
-    }
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2a2a2a;
+            --shadow: rgba(255, 255, 255, 0.08);
+            --button-bg: #fff;
+            --button-text: #000;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s, color 0.4s;
-    }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #ffffff);
+            color: var(--text-color);
+            transition: background-color 0.4s, color 0.4s;
+        }
 
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: background-color 0.4s, box-shadow 0.4s;
-    }
+        /* 卡片 */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+        }
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-    }
+        .container:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px var(--shadow);
+        }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
+        /* 標題打字機 */
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 32px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid var(--text-color);
+            width: 0;
+            animation: typing 2.5s steps(30, end) forwards, blink 0.8s step-end infinite;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
 
-    .back-button:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
+            to {
+                width: 100%;
+            }
+        }
 
-    .toggle-dark {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 8px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      box-shadow: 0 2px 5px var(--shadow);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
 
-    .toggle-dark:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
-  </style>
+        /* 段落美化 */
+        p span {
+            display: block;
+            margin-bottom: 1.2em;
+            font-size: 1.15rem;
+            line-height: 2;
+            letter-spacing: 0.5px;
+            text-align: justify;
+            text-indent: 1.5em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* 深色模式切換按鈕 */
+        .toggle-dark {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-dark:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ripple 效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <button class="toggle-dark" onclick="toggleDarkMode()">切換模式</button>
+    <button class="toggle-dark">切換模式</button>
 
-  <div class="container">
-    <h3>問題一：個人簡介和申請動機</h3>
-    <p>AAAAA</p>
+    <div class="container">
+        <h3>問題一：個人簡介和申請動機</h3>
 
-    <a class="back-button" href="index.html">← 返回</a>
-  </div>
+        <p>
+            <span style="animation-delay:2.5s;">我目前36歲，民國101年自台灣大學法律系法學組畢業，103年考取台灣律師執照，104年初在律師事務所任職展開律師職涯。</span>
+            <span style="animation-delay:2.8s;">105年7月至美國西北大學就讀並於106年5月取得法律碩士(LLM)，106年底回國後曾在不同上市櫃公司擔任法務 in-house
+                工作，109年3月返回南部事務所轉任合署律師(自行接案)至今。</span>
+            <span
+                style="animation-delay:3.1s;">回首自己超過10年的律師職涯工作，這個領域想嘗試的基本工作類型都算有所接觸，但越發覺傳統的法律工作對我而言似乎少了什麼，並認知到這並非我想持續耕耘作為一生志業的工作。</span>
+            <span
+                style="animation-delay:3.4s;">雖然我自認擅長處理邏輯問題及解決問題，也喜歡思考各種法律邏輯問題，但長期下來深刻體會傳統法律工作其實除了邏輯判斷外，其實相當程度是情緒勞動(處理當事人情緒問題)，甚至案件進行的狀況很大程度受制於繁瑣的程序及其他外在因素，經常沒有辦法很有效率的解決問題，甚至因為法律案件經常接觸社會灰色地帶。</span>
+            <span style="animation-delay:3.7s;">長期下來我認為這份工作並不符合我心中希望工作可以產生更多正面效益或有生產力價值的狀況，也無法符合我心中成就自我實現的方向。</span>
+            <span style="animation-delay:4.0s;">在去年中經歷至親離世的人生變故後，我深刻體會到人生既然終有終點，未來剩下的時間我希望自己可以投入具有更多正面生產力的工作。</span>
+            <span style="animation-delay:4.3s;">跟周邊親近目前擔任軟體工程師的朋友聊過，他認為我的特質或許很適合擔任軟體工程師，另外一位朋友近期成功轉換職涯跑道成為軟體工程師，是他向我推薦了
+                WeHelp的課程，目前是我希望生命能獲得接受新刺激與學習的階段，時間上也較彈性能配合投入整個課程，是我本次申請的動機。</span>
+            <span style="animation-delay:4.6s;">網路上雖然有很多學習軟體工程的免費資源，但自己摸索總有一種不確定方向的感覺，因此我想我現階段WeHelp
+                規劃約半年並有體系的學習方式很符合我目前的需求，並且有同學社群的存在也能交流相關資訊，互相幫助增進學習動力。</span>
+        </p>
 
-  <script>
-    // 深色模式切換
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-  </script>
+        <a class="back-button" href="index.html">← 返回</a>
+    </div>
+
+    <script>
+        // 深色模式切換
+        function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
+
+        // ripple 效果
+        document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const circle = document.createElement("span");
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
+                circle.classList.add("ripple");
+                const ripple = this.getElementsByClassName("ripple")[0];
+                if (ripple) ripple.remove();
+                this.appendChild(circle);
+                if (this.classList.contains("toggle-dark")) toggleDarkMode();
+            });
+        });
+    </script>
+
 </body>
+
 </html>
