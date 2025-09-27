@@ -1,1 +1,121 @@
-44444
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>問題一：個人簡介和申請動機</title>
+
+  <!-- 字型 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --card-bg: #f5f5f5;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --button-bg: #000;
+      --button-text: #fff;
+    }
+
+    body.dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --card-bg: #2a2a2a;
+      --shadow: rgba(255, 255, 255, 0.08);
+      --button-bg: #fff;
+      --button-text: #000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px var(--shadow);
+      transition: background-color 0.4s, box-shadow 0.4s;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+    }
+
+    .toggle-dark {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      box-shadow: 0 2px 5px var(--shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-dark:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+    }
+  </style>
+</head>
+
+<body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">切換模式</button>
+
+  <div class="container">
+    <h1>問題四：軟體技術日新月異，如何確定投入的領域是正確有回報的？</h1>
+    <p>DDDDDD</p>
+
+    <a class="back-button" href="index.html">← 返回</a>
+  </div>
+
+  <script>
+    // 深色模式切換
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+</body>
+</html>
