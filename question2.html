@@ -2,171 +2,229 @@
 <html lang="zh-Hant">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>問題二</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>問題二</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-<style>
-:root {
-  --bg-color: #ffffff;
-  --text-color: #1a1a1a;
-  --card-bg: #f5f5f5;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --button-bg: #000;
-  --button-text: #fff;
-}
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --button-bg: #000;
+            --button-text: #fff;
+        }
 
-body.dark-mode {
-  --bg-color: #1a1a1a;
-  --text-color: #f0f0f0;
-  --card-bg: #2a2a2a;
-  --shadow: rgba(255, 255, 255, 0.08);
-  --button-bg: #fff;
-  --button-text: #000;
-}
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2a2a2a;
+            --shadow: rgba(255, 255, 255, 0.08);
+            --button-bg: #fff;
+            --button-text: #000;
+        }
 
-* { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-  margin: 0;
-  padding: 40px 20px;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg,#f0f4ff,#ffffff);
-  color: var(--text-color);
-  transition: background-color 0.4s, color 0.4s;
-}
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #ffffff);
+            color: var(--text-color);
+            transition: background-color 0.4s, color 0.4s;
+        }
 
-/* 卡片 */
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-  background-color: var(--card-bg);
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px var(--shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
-}
-.container:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px var(--shadow);
-}
+        /* 卡片 */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+        }
 
-/* 標題打字機 */
-h3 {
-  font-size: 1.5rem; /* 縮小字體 */
-  margin-bottom: 28px;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid var(--text-color);
-  width: 0;
-  animation: typing 2.5s steps(30,end) forwards, blink 0.8s step-end infinite;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-@keyframes typing { from { width:0; } to { width:100%; } }
-@keyframes blink { 50% { border-color: transparent; } }
+        .container:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px var(--shadow);
+        }
 
-/* 段落美化 */
-p span {
-  display: block;
-  margin-bottom: 1.2em;
-  font-size: 1rem; /* 縮小字體 */
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-  text-align: justify;
-  text-indent: 1.5em;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeIn 0.8s forwards;
-}
-@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        /* 標題打字機效果，逐行 */
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-/* 返回按鈕 */
-.back-button {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 12px 24px;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s, background-color 0.3s, color 0.3s;
-}
-.back-button:hover { transform: translateY(-2px); background-color: var(--text-color); color: var(--bg-color); }
+        h3 span {
+            display: block;
+            overflow: hidden;
+            border-right: 2px solid var(--text-color);
+            white-space: nowrap;
+            width: 0;
+            animation: typing 1.5s steps(40, end) forwards, blink 0.8s step-end infinite;
+        }
 
-/* 深色模式切換按鈕 */
-.toggle-dark {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  box-shadow: 0 2px 5px var(--shadow);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.toggle-dark:hover { background-color: var(--text-color); color: var(--bg-color); }
+        h3 span:nth-child(2) {
+            animation-delay: 1.6s;
+        }
 
-/* ripple 效果 */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple-animation 0.6s linear;
-  background-color: rgba(255,255,255,0.6);
-  pointer-events: none;
-}
-@keyframes ripple-animation { to { transform: scale(4); opacity: 0; } }
-</style>
+        h3 span:nth-child(3) {
+            animation-delay: 3.2s;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* 段落美化 */
+        p span {
+            display: block;
+            margin-bottom: 1.2em;
+            font-size: 1rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            text-align: justify;
+            text-indent: 1.5em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* 深色模式切換按鈕 */
+        .toggle-dark {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-dark:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ripple 效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<button class="toggle-dark">切換模式</button>
+    <button class="toggle-dark">切換模式</button>
 
-<div class="container">
-<h3>問題二：曾經做過哪些軟體工程技術相關的學習？若有作品請分享給我們。</h3>
+    <div class="container">
+        <h3>
+            <span>問題二：曾經做過哪些軟體工程技術相關的學習？</span>
+            <span>若有作品請分享給我們。</span>
+        </h3>
 
-<p>
-<span style="animation-delay:2.5s;">曾經自行在codecadamy網站上過learn how to code課程，還有Replit網站上過100 Days of Code(python)，僅有上線上課暫無作品可以分享
-</span>
+        <p>
+            <span style="animation-delay:2.5s;">曾經自行在 codecadamy 網站上過 learn how to code 課程，還有 Replit 網站上過 100 Days of
+                Code (Python)，目前僅有上線上課暫無作品可分享。</span>
+        </p>
 
-</p>
+        <a class="back-button" href="index.html">← 返回</a>
+    </div>
 
-<a class="back-button" href="index.html">← 返回</a>
-</div>
+    <script>
+        // 深色模式切換
+        function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
 
-<script>
-// 深色模式切換
-function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
-
-// ripple 效果
-document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
-  button.addEventListener('click', function (e) {
-    const circle = document.createElement("span");
-    const diameter = Math.max(this.clientWidth, this.clientHeight);
-    const radius = diameter/2;
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
-    circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
-    circle.classList.add("ripple");
-    const ripple = this.getElementsByClassName("ripple")[0];
-    if(ripple) ripple.remove();
-    this.appendChild(circle);
-    if(this.classList.contains("toggle-dark")) toggleDarkMode();
-  });
-});
-</script>
+        // ripple 效果
+        document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const circle = document.createElement("span");
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
+                circle.classList.add("ripple");
+                const ripple = this.getElementsByClassName("ripple")[0];
+                if (ripple) ripple.remove();
+                this.appendChild(circle);
+                if (this.classList.contains("toggle-dark")) toggleDarkMode();
+            });
+        });
+    </script>
 
 </body>
+
 </html>
