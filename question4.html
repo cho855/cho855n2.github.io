@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>問題四</title>
+    <title>問題四 - 自動逐行動畫</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
@@ -56,7 +56,7 @@
             box-shadow: 0 12px 30px var(--shadow);
         }
 
-        /* 標題打字機效果，逐行 */
+        /* 標題打字機效果 */
         h3 {
             font-size: 1.5rem;
             margin-bottom: 28px;
@@ -70,14 +70,6 @@
             white-space: nowrap;
             width: 0;
             animation: typing 1.5s steps(40, end) forwards, blink 0.8s step-end infinite;
-        }
-
-        h3 span:nth-child(2) {
-            animation-delay: 1.6s;
-        }
-
-        h3 span:nth-child(3) {
-            animation-delay: 3.2s;
         }
 
         @keyframes typing {
@@ -96,7 +88,7 @@
             }
         }
 
-        /* 段落美化 */
+        /* 段落自動逐行淡入 */
         p span {
             display: block;
             margin-bottom: 1.2em;
@@ -144,7 +136,7 @@
             color: var(--bg-color);
         }
 
-        /* 深色模式切換按鈕 */
+        /* 深色模式切換 */
         .toggle-dark {
             position: fixed;
             top: 20px;
@@ -167,7 +159,7 @@
             color: var(--bg-color);
         }
 
-        /* ripple 效果 */
+        /* ripple */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -191,14 +183,14 @@
 
     <div class="container">
         <h3>
-            <span>問題四：軟體技術日新月異，如何確定投入的領域是正確有回報的？</span>
-            
+            <span>問題四：軟體技術日新月異，</span>
+            <span>如何確定投入的領域是正確有回報的？</span>
         </h3>
 
         <p>
-            <span style="animation-delay:2.5s;">未來的世界本來就充滿不確定性與未知，我認為沒有任何領域是確定投入後一定正確可以回報的，</span>
-            <span style="animation-delay:2.8s;">但倘若在過去的學習中確實掌握了程式語言的核心邏輯與概念，並且持續抱持開放的心態與動機學習新的知識，</span>
-            <span style="animation-delay:3.1s;"> 即便未來產生了新的技術，在學習新的技術時應有機會更快掌握新技術的核心觀念。</span>
+            <span>未來的世界本來就充滿不確定性與未知，我認為沒有任何領域是確定投入後一定正確可以回報的，</span>
+            <span>但倘若在過去的學習中確實掌握了程式語言的核心邏輯與概念，並且持續抱持開放的心態與動機學習新的知識，</span>
+            <span>即便未來產生了新的技術，在學習新的技術時應有機會更快掌握其核心觀念。</span>
         </p>
 
         <a class="back-button" href="index.html">← 返回</a>
@@ -222,6 +214,14 @@
                 if (ripple) ripple.remove();
                 this.appendChild(circle);
                 if (this.classList.contains("toggle-dark")) toggleDarkMode();
+            });
+        });
+
+        // 段落自動逐行動畫
+        window.addEventListener('DOMContentLoaded', () => {
+            const spans = document.querySelectorAll('p span');
+            spans.forEach((span, i) => {
+                span.style.animationDelay = `${2.5 + i * 0.3}s`; // 依序淡入
             });
         });
     </script>
