@@ -1,99 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome</title>
+  <title>歡迎頁面</title>
 
-  <!-- Google Fonts: Inter for minimalist look -->
+  <!-- 字型：Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --link-bg: #f5f5f5;
+      --link-hover: #000000;
+      --link-hover-text: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode {
+      --bg-color: #1a1a1a;
+      --text-color: #f0f0f0;
+      --link-bg: #2a2a2a;
+      --link-hover: #ffffff;
+      --link-hover-text: #000000;
+      --shadow: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #000000;
+      background-color: var(--bg-color);
+      color: var(--text-color);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .links {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(120px, 1fr));
-      gap: 20px;
-      width: 300px;
-      opacity: 0;
-      animation: slideUp 1s ease 0.5s forwards;
-    }
-
-    a {
-      text-decoration: none;
-      color: #000;
-      font-weight: 600;
-      text-align: center;
-      padding: 12px 16px;
-      border: 1px solid #000;
-      border-radius: 6px;
-      transition: all 0.3s ease;
-    }
-
-    a:hover {
-      background-color: #000;
-      color: #fff;
-      transform: translateY(-3px);
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .links {
-        grid-template-columns: 1fr;
-        width: 80%;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Welcome</h1>
-
-  <div class="links">
-    <a href="page1.html">Page 1</a>
-    <a href="page2.html">Page 2</a>
-    <a href="page3.html">Page 3</a>
-    <a href="page4.html">Page 4</a>
-    <a href="page5.html">Page 5</a>
-    <a href="page6.html">Page 6</a>
-    <a href="page7.html">Page 7</a>
-    <a href="page8.html">Page 8</a>
-  </div>
-</body>
-</html>
