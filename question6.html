@@ -1,121 +1,229 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>問題六</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>問題六</title>
 
-  <!-- 字型 -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-color: #ffffff;
-      --text-color: #000000;
-      --card-bg: #f5f5f5;
-      --shadow: rgba(0, 0, 0, 0.1);
-      --button-bg: #000;
-      --button-text: #fff;
-    }
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #f5f5f5;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --button-bg: #000;
+            --button-text: #fff;
+        }
 
-    body.dark-mode {
-      --bg-color: #1a1a1a;
-      --text-color: #f0f0f0;
-      --card-bg: #2a2a2a;
-      --shadow: rgba(255, 255, 255, 0.08);
-      --button-bg: #fff;
-      --button-text: #000;
-    }
+        body.dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --card-bg: #2a2a2a;
+            --shadow: rgba(255, 255, 255, 0.08);
+            --button-bg: #fff;
+            --button-text: #000;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.4s, color 0.4s;
-    }
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #ffffff);
+            color: var(--text-color);
+            transition: background-color 0.4s, color 0.4s;
+        }
 
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px var(--shadow);
-      transition: background-color 0.4s, box-shadow 0.4s;
-    }
+        /* 卡片 */
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s;
+        }
 
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-    }
+        .container:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px var(--shadow);
+        }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-    }
+        /* 標題美化 */
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 28px;
+            line-height: 1.4;
+            min-height: 3.5em;
+            /* 保持高度避免跳動 */
+        }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
-      background-color: var(--button-bg);
-      color: var(--button-text);
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
+        /* 段落美化與逐行淡入 */
+        p span {
+            display: block;
+            margin-bottom: 1.2em;
+            font-size: 1rem;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+            text-align: justify;
+            text-indent: 1.5em;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.8s forwards;
+        }
 
-    .back-button:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-    .toggle-dark {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      font-size: 0.9rem;
-      border: none;
-      border-radius: 8px;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      box-shadow: 0 2px 5px var(--shadow);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .toggle-dark:hover {
-      background-color: var(--text-color);
-      color: var(--bg-color);
-    }
-  </style>
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, background-color 0.3s, color 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* 深色模式切換 */
+        .toggle-dark {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 5px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toggle-dark:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ripple 效果 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <button class="toggle-dark" onclick="toggleDarkMode()">切換模式</button>
+    <button class="toggle-dark">切換模式</button>
 
-  <div class="container">
-    <h3>問題六:關於這份申請網頁，分享一個開發時的技術心得。</h3>
-    <p>FFFFFF</p>
+    <div class="container">
+        <h3 id="title"></h3>
 
-    <a class="back-button" href="index.html">← 返回</a>
-  </div>
+        <p>
+            <span>這份申請網頁我是透過chatgpt的協助寫出來的，原本以為生成一個版本的頁面就可以套用在8個問題上，但實際作成後，發現在某些頁面因為標題長度或回答內容段落的長度及字數就要來回修改很多次，雖然chatgpt也會給予很多改善版面美觀的建議，也許是免費版的關係，有時候僅生出部分段落改善的內容，</span>
+            <span>受限於目前對於寫網頁的知識匱乏，除非AI直接生成完整版的程式碼，不然自己目前比較難去直接修改部分程式碼內容，但在做成這份網頁的過程中，有透過AI的協助嘗試了很多不同的網頁效果，是一個蠻有趣的過程。</span>
+        </p>
 
-  <script>
-    // 深色模式切換
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
-  </script>
+        <a class="back-button" href="index.html">← 返回</a>
+    </div>
+
+    <script>
+        // 深色模式切換
+        function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
+
+        // ripple 效果
+        document.querySelectorAll('.back-button, .toggle-dark').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const circle = document.createElement("span");
+                const diameter = Math.max(this.clientWidth, this.clientHeight);
+                const radius = diameter / 2;
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - this.getBoundingClientRect().left - radius}px`;
+                circle.style.top = `${e.clientY - this.getBoundingClientRect().top - radius}px`;
+                circle.classList.add("ripple");
+                const ripple = this.getElementsByClassName("ripple")[0];
+                if (ripple) ripple.remove();
+                this.appendChild(circle);
+                if (this.classList.contains("toggle-dark")) toggleDarkMode();
+            });
+        });
+
+        // 標題逐行打字機效果
+        const titleText = [
+            "問題六：關於這份申請網頁，分享一個開發時的技術心得。",];
+        const titleEl = document.getElementById("title");
+
+        function typeLine(line, el, delay = 0) {
+            setTimeout(() => {
+                let i = 0;
+                const span = document.createElement("span");
+                el.appendChild(span);
+                function type() {
+                    if (i < line.length) {
+                        span.textContent += line[i];
+                        i++;
+                        setTimeout(type, 50);
+                    }
+                }
+                type();
+            }, delay);
+        }
+
+        titleText.forEach((line, index) => {
+            typeLine(line, titleEl, index * 1200);
+        });
+
+        // 段落自動逐行動畫
+        window.addEventListener('DOMContentLoaded', () => {
+            const spans = document.querySelectorAll('p span');
+            spans.forEach((span, i) => {
+                span.style.animationDelay = `${2.5 + i * 0.3}s`;
+            });
+        });
+    </script>
+
 </body>
+
 </html>
